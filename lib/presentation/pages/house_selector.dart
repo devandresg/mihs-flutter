@@ -12,6 +12,7 @@ class HouseSelectorPage extends StatefulWidget {
 }
 
 class _HouseSelectorPageState extends State<HouseSelectorPage> {
+  dynamic selectedHouse;
   @override
   Widget build(BuildContext context) {
     dynamic screenSize = MediaQuery.of(context).size;
@@ -34,22 +35,31 @@ class _HouseSelectorPageState extends State<HouseSelectorPage> {
                     ),
                     itemCount: housesData.length,
                     itemBuilder: (context, item) => houseCard(context,
-                        onTap: () =>
-                            Navigator.pushNamed(context, AppRoutes.houseModel),
+                        onTap: () => setState(() {
+                              selectedHouse = housesData[item];
+                            }),
                         houseData: housesData[item]),
                   ),
                 ),
               ],
             ),
           ),
-          houseDescription(context, houseData: {}),
+          selectedHouse != null
+              ? houseDescription(
+                  context,
+                  houseData: selectedHouse,
+                  closeFunction: () => setState(() {
+                    selectedHouse = null;
+                  }),
+                )
+              : SizedBox(),
         ],
       ),
     );
   }
 }
 
-Widget houseDescription(BuildContext context, {houseData}) {
+Widget houseDescription(BuildContext context, {houseData, closeFunction}) {
   dynamic screenSize = MediaQuery.of(context).size;
   return Container(
     width: screenSize.width,
@@ -67,131 +77,320 @@ Widget houseDescription(BuildContext context, {houseData}) {
         ),
         child: Stack(
           children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: closeFunction,
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
+                    'close (X)',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: Colors.black87),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Column(
                 spacing: 10.0,
                 children: [
-                  primaryTitleLarge(context, text: 'House Title'),
-                  Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
+                  primaryTitleLarge(context, text: houseData["name"]),
+                  SizedBox(
+                    height: 200.0,
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(3.0),
+                      child: Image.asset(
+                        houseData["imageUrl"],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    'The iConstellation is a cozy yet modern home designed by the Mackle Brothers, radiating a celestial charm that lives up to its name.',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: Colors.black87,
                         ),
+                    textAlign: TextAlign.center,
                   ),
                   Expanded(
                     child: Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            child: Column(
-                              spacing: 10.0,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    decoration:
-                                        BoxDecoration(color: Colors.green),
-                                  ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3, // Número de columnas
+                                  crossAxisSpacing:
+                                      5, // Espacio horizontal entre las celdas
+                                  mainAxisSpacing: 5,
                                 ),
-                                Expanded(
-                                  child: GridView.builder(
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3, // Número de columnas
-                                      crossAxisSpacing:
-                                          10, // Espacio horizontal entre las celdas
-                                      mainAxisSpacing:
-                                          10, // Espacio vertical entre las celdas
+                                itemCount: 6, // Número total de elementos
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors
+                                          .blueGrey, // Color rojo para las cajitas
+                                      borderRadius: BorderRadius.circular(3.0),
                                     ),
-                                    itemCount: 6, // Número total de elementos
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        color: Colors
-                                            .red, // Color rojo para las cajitas
-                                        child: Center(
-                                          child: Text(
-                                            'Caja ${index + 1}', // Texto dentro de cada cajita
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
+                                    child: Center(
+                                      child: Text(
+                                        'Feature ${index + 1}', // Texto dentro de cada cajita
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
                         Expanded(
-                          child: Column(
-                            children: [
-                              Text(
-                                'Description: ',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
-                                      color: Colors.black87,
-                                    ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                spacing: 5.0,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Features',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    spacing: 10.0,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'Two bedrooms:',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'The primary suite is spacious with an en-suite bathroom and large windows for stargazing.',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                              ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    spacing: 10.0,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'A sleek kitchen:',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Equipped with state-of-the-art appliances and a constellation-inspired backsplash.',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                              ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    spacing: 10.0,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'A luminous living room:',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Highlighted by a vaulted ceiling and a skylight that frames the night sky.',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                              ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    spacing: 10.0,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'A private balcony:',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Perfect for evening relaxation under the stars.',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                              ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    spacing: 10.0,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'An open floor plan:',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Seamlessly connecting the dining area, kitchen, and living space for a harmonious flow.',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelSmall
+                                              ?.copyWith(
+                                                color: Colors.black87,
+                                              ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'blue: Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
-                                      color: Colors.black87,
-                                    ),
-                              ),
-                              Text(
-                                'green: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
-                                      color: Colors.black87,
-                                    ),
-                              ),
-                              Text(
-                                'red: Duis aute irure dolor in reprehenderit in voluptate velit.',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
-                                      color: Colors.black87,
-                                    ),
-                              ),
-                              Text(
-                                'purple: Excepteur sint occaecat cupidatat non proident, sunt in culpa.',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
-                                      color: Colors.black87,
-                                    ),
-                              ),
-                              Text(
-                                'orange: Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
-                                      color: Colors.black87,
-                                    ),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ],
                     ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(),
+                                  ),
+                                  Text(
+                                    'Price ${houseData["price"]}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(3.0),
+                            child: Image.asset(
+                              'assets/img/plane.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  primaryButtonLarge(
+                    context,
+                    title: 'Continue',
+                    onPressed: () =>
+                        Navigator.pushNamed(context, AppRoutes.houseModel),
                   ),
                 ],
               ),

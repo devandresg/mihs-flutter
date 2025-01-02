@@ -49,7 +49,10 @@ dynamic housesData = [
     "price": 25300,
     "message":
         "This elegant island home has an extra-large bedroom and bathroom.",
-    "imageUrl": "assets/img/the_constellation.png"
+    "imageUrl": "assets/img/the_constellation.png",
+    "card_intro": "",
+    "features": {},
+    "planeUrl": ""
   },
   {
     "name": "The Buccaneer",
