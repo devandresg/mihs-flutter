@@ -5,8 +5,8 @@
 *.swp
 .DS_Store
 .atom/
-.build/
-.buildlog/
+#.build/
+#.buildlog/
 .history
 .svn/
 .swiftpm/
@@ -25,13 +25,13 @@ migrate_working_dir/
 
 # Flutter/Dart/Pub related
 **/doc/api/
-**/ios/Flutter/.last_build_id
+#**/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+#/build/
 
 # Symbolication related
 app.*.symbols
@@ -50,7 +50,7 @@ app.*.map.json
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
-build/
+#build/
 pubspec.lock
 .flutter/
 # Obfuscation-specific files
@@ -58,7 +58,7 @@ app.*.symbols
 app.*.map.json
 
 # iOS specific
-ios/Flutter/.last_build_id
+#ios/Flutter/.last_build_id
 ios/Pods/
 ios/.symlinks/
 ios/Flutter/Flutter.framework/
@@ -69,7 +69,7 @@ ios/.generated/
 
 # Android specific
 .android/
-app/build/
+#|111app/build/
 local.properties
 
 # IntelliJ/Android Studio
