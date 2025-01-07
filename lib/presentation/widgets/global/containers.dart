@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget bodyContainer(BuildContext context, {child}) {
+Widget bodyContainer(BuildContext context, {required Widget child}) {
   final screenSize = MediaQuery.of(context).size;
   return Center(
     child: SizedBox(
@@ -14,11 +14,9 @@ Widget bodyContainer(BuildContext context, {child}) {
             color: Theme.of(context).colorScheme.onSurface,
             borderRadius: BorderRadius.circular(8.0),
           ),
-          child: Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: child,
-            ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: child,
           ),
         ),
       ),
