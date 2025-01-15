@@ -38,5 +38,12 @@ dynamic filterQuestions = [
       {"value": "1500-2500", "label": "Between 1,500 and 2,500 sq. ft."},
       {"value": ">2500", "label": "More than 2,500 sq. ft."}
     ]
+  },
+  {
+    "question": "Do you wanna have the house waterfront?",
+    "options": [
+      {"value": "yes", "label": "Yes, I do."},
+      {"value": "not", "label": "No, I don't."},
+    ]
   }
 ];

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mackle_room_designer/data/models/houses_data.dart';
-import 'package:mackle_room_designer/presentation/routes/app_routes.dart';
 import 'package:mackle_room_designer/presentation/widgets/global/global_widgets.dart';
 import 'package:mackle_room_designer/presentation/widgets/house_selector/house_description.dart';
 
