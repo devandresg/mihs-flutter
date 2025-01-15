@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mackle_room_designer/core/utils/app_utils.dart';
 
 Widget houseCard(BuildContext context, {onTap, houseData}) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      width: 250.0,
-      height: 150.0,
+      width: 500.0,
+      height: 350.0,
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
@@ -52,7 +53,10 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                         ),
                         child: Text(
                           houseData['name'],
-                          style: Theme.of(context).textTheme.headlineSmall,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(fontSize: calculateSize(8, context)),
                         ),
                       ),
                       Expanded(
@@ -61,11 +65,19 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                           children: [
                             Text(
                               '${houseData['bedrooms']} Bedrooms',
-                              style: Theme.of(context).textTheme.labelSmall,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                      fontSize: calculateSize(4, context)),
                             ),
                             Text(
                               '${houseData['baths']} Baths',
-                              style: Theme.of(context).textTheme.labelSmall,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                      fontSize: calculateSize(4, context)),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +87,10 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                                       item,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .labelSmall,
+                                          .labelSmall
+                                          ?.copyWith(
+                                              fontSize:
+                                                  calculateSize(4, context)),
                                     ),
                                   )
                                   .toList(), // Convierte el Iterable a List<Widget>
@@ -91,7 +106,10 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                         ),
                         child: Text(
                           '${houseData['year']} Price - ${houseData['price']}',
-                          style: Theme.of(context).textTheme.labelMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(fontSize: calculateSize(6, context)),
                         ),
                       ),
                     ],
@@ -102,7 +120,7 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
           ),
           const SizedBox(height: 8.0),
           Container(
-            height: 25.0,
+            height: 60.0,
             padding: const EdgeInsets.all(3.0),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.secondary,
@@ -111,7 +129,10 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
             child: Center(
               child: Text(
                 houseData['message'],
-                style: Theme.of(context).textTheme.labelSmall,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelSmall
+                    ?.copyWith(fontSize: calculateSize(4, context)),
               ),
             ),
           ),

@@ -12,21 +12,36 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: bodyContainer(
         context,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
           children: [
-            primaryTitleLarge(context, text: 'Mackle Room Designer'),
-            Align(
-              alignment: Alignment.centerRight,
-              child: primaryButtonLarge(
-                context,
-                onPressed: () =>
-                    Navigator.pushNamed(context, AppRoutes.houseSelector),
-                title: 'Start',
+            SizedBox(
+              width: screenSize.width,
+              height: screenSize.height,
+              child: Image.asset(
+                'assets/img/Model_Home_Marco_Island_Book.jpg',
+                fit: BoxFit.cover,
               ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                primaryTitleLarge(context, text: 'Mackle Room Designer'),
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: primaryButtonLarge(
+                        context,
+                        onPressed: () =>
+                            Navigator.pushNamed(context, AppRoutes.houseFilter),
+                        title: 'Start',
+                      ),
+                    )),
+              ],
             ),
           ],
         ),
