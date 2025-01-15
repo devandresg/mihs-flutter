@@ -7,7 +7,7 @@ Widget bodyContainer(BuildContext context, {required Widget child}) {
       width: screenSize.width,
       height: screenSize.height,
       child: Center(
-        child: Container(
+        child: SizedBox(
           width: screenSize.width,
           height: screenSize.height,
           child: child,

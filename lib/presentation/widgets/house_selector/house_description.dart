@@ -354,119 +354,61 @@ Widget houseDescription(BuildContext context, {houseData}) {
                     ),
                     Expanded(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        spacing: 10,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Do you want the house to be surrounded by water?",
+                            "Price \$ ${houseData['price']}",
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyLarge
+                                .titleLarge
                                 ?.copyWith(
-                                    color: Colors.black87,
-                                    fontSize: calculateSize(4, context)),
+                                    fontSize: calculateSize(12, context)),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            spacing: 20,
                             children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Colors.redAccent,
-                                      borderRadius: BorderRadius.circular(3.0),
-                                    ),
-                                  ),
-                                  Text(
-                                    'Surrounded',
-                                    style: Theme.of(context)
+                              // Text field
+                              Container(
+                                width: 300,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3.0),
+                                  color: Colors.white,
+                                ),
+                                child: TextField(
+                                  controller: _emailController,
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.all(5),
+                                    labelText: 'Email',
+                                    hintText: 'Enter an email',
+                                    hintStyle: Theme.of(context)
                                         .textTheme
                                         .bodyLarge
                                         ?.copyWith(
-                                            color: Colors.black87,
-                                            fontSize:
-                                                calculateSize(3, context)),
+                                            color: Colors
+                                                .black87), // Poner el hint en cursiva
+                                    labelStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(color: Colors.black87),
                                   ),
-                                ],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(color: Colors.black87),
+                                ),
                               ),
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Colors.redAccent,
-                                      borderRadius: BorderRadius.circular(3.0),
-                                    ),
-                                  ),
-                                  Text(
-                                    'Not surrounded',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge
-                                        ?.copyWith(
-                                            color: Colors.black87,
-                                            fontSize:
-                                                calculateSize(3, context)),
-                                  ),
-                                ],
+                              const SizedBox(width: 8),
+                              primaryButtonMedium(
+                                context,
+                                title: "Buy",
+                                onPressed: () => Navigator.pushNamed(
+                                    context, AppRoutes.homePage),
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ),
-                    Text(
-                      "Price \$ ${houseData['price']}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(fontSize: calculateSize(12, context)),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 20,
-                      children: [
-                        // Text field
-                        Container(
-                          width: 300,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(3.0),
-                            color: Colors.white,
-                          ),
-                          child: TextField(
-                            controller: _emailController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.all(5),
-                              labelText: 'Email',
-                              hintText: 'Enter an email',
-                              hintStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                      color: Colors
-                                          .black87), // Poner el hint en cursiva
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(color: Colors.black87),
-                            ),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(color: Colors.black87),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        primaryButtonMedium(
-                          context,
-                          title: "Buy",
-                          onPressed: () =>
-                              Navigator.pushNamed(context, AppRoutes.homePage),
-                        ),
-                      ],
                     ),
                   ],
                 ),
