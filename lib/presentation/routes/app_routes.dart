@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mackle_room_designer/presentation/pages/home_page.dart';
+import 'package:mackle_room_designer/presentation/pages/house_description.dart';
+import 'package:mackle_room_designer/presentation/pages/house_filter.dart';
 import 'package:mackle_room_designer/presentation/pages/house_model.dart';
 import 'package:mackle_room_designer/presentation/pages/house_selector.dart';
 
 class AppRoutes {
+  static const String homePage = '/home_page'; // Ruta para HouseSelector
   static const String houseSelector =
-      '/houseSelector'; // Ruta para HouseSelector
-  static const String houseModel = '/houseModel'; // Ruta para HouseSelector
+      '/house_selector'; // Ruta para HouseSelector
+  static const String houseModel = '/house_model'; // Ruta para HouseSelector
+  static const String houseFilter = '/house_filter'; // Ruta para HouseSelector
+  static const String houseDescription =
+      '/house_description'; // Ruta para HouseSelector
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -33,6 +40,43 @@ class AppRoutes {
             );
           },
         );
+      case houseFilter:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const HouseFilterPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // Configurar el fade-in
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      case houseDescription:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const HouseDescriptionPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // Configurar el fade-in
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      case homePage:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const HomePage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // Configurar el fade-in
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

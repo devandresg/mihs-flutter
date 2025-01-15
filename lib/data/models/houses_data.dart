@@ -1,5 +1,19 @@
 dynamic housesData = [
   {
+    "name": "The Constellation",
+    "year": 1968,
+    "bedrooms": 2,
+    "baths": 2,
+    "other": ["Screen Porch", "Garage", "1,700 sq. ft."],
+    "price": 25300,
+    "message":
+        "This elegant island home has an extra-large bedroom and bathroom.",
+    "imageUrl": "assets/img/the_constellation.png",
+    "card_intro": "",
+    "features": {},
+    "planeUrl": ""
+  },
+  {
     "name": "The Tampico",
     "year": 1965,
     "bedrooms": 1,
@@ -39,20 +53,6 @@ dynamic housesData = [
     "price": 22250,
     "message": "A compact model with decorator designed interior.",
     "imageUrl": "assets/img/model.jpeg"
-  },
-  {
-    "name": "The Constellation",
-    "year": 1968,
-    "bedrooms": 2,
-    "baths": 2,
-    "other": ["Screen Porch", "Garage", "1,700 sq. ft."],
-    "price": 25300,
-    "message":
-        "This elegant island home has an extra-large bedroom and bathroom.",
-    "imageUrl": "assets/img/the_constellation.png",
-    "card_intro": "",
-    "features": {},
-    "planeUrl": ""
   },
   {
     "name": "The Buccaneer",
