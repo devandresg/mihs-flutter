@@ -9,12 +9,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas
-        id="unity-canvas"
-        width="100%"
-        height="100%"
-        tabindex="-1"
-      ></canvas>
+      <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -99,7 +94,6 @@
         document.getElementsByTagName("head")[0].appendChild(meta);
         document.querySelector("#unity-container").className = "unity-mobile";
         document.querySelector("#unity-loading-bar").style.borderRadius = "8px";
-
         canvas.className = "unity-mobile";
 
         // To lower canvas resolution on mobile devices to gain some

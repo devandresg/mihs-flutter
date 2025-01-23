@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                       child: primaryButtonLarge(
                         context,
                         onPressed: () =>
-                            Navigator.pushNamed(context, AppRoutes.houseFilter),
+                            Navigator.pushNamed(context, AppRoutes.introPage),
                         title: 'Start',
                       ),
                     )),

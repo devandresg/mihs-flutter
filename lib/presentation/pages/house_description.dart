@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mackle_room_designer/data/models/houses_data.dart';
 import 'package:mackle_room_designer/presentation/widgets/global/global_widgets.dart';
-import 'package:mackle_room_designer/presentation/widgets/house_selector/house_description.dart';
+import 'package:mackle_room_designer/presentation/widgets/house_selector/house_description_buy.dart';
 
 class HouseDescriptionPage extends StatefulWidget {
   const HouseDescriptionPage({super.key});
@@ -29,7 +29,9 @@ class _HouseDescriptionPageState extends State<HouseDescriptionPage> {
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [houseDescription(context, houseData: housesData[0])],
+              children: [
+                houseDescriptionBuy(context, houseData: housesData[0])
+              ],
             ),
           ],
         ),

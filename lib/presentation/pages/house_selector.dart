@@ -3,6 +3,7 @@ import 'package:mackle_room_designer/data/models/houses_data.dart';
 import 'package:mackle_room_designer/presentation/bloc/configs/global/global_configs.dart';
 import 'package:mackle_room_designer/presentation/routes/app_routes.dart';
 import 'package:mackle_room_designer/presentation/widgets/global/global_widgets.dart';
+import 'package:mackle_room_designer/presentation/widgets/house_selector/house_description.dart';
 import 'package:mackle_room_designer/presentation/widgets/house_selector/house_selector_widgets.dart';
 
 class HouseSelectorPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class HouseSelectorPage extends StatefulWidget {
 }
 
 class _HouseSelectorPageState extends State<HouseSelectorPage> {
+  bool showDescription = false;
   @override
   Widget build(BuildContext context) {
     dynamic screenSize = MediaQuery.of(context).size;
@@ -46,8 +48,7 @@ class _HouseSelectorPageState extends State<HouseSelectorPage> {
                         return houseCard(context,
                             onTap: () => setState(() {
                                   AppConfig.selectedHouse = item;
-                                  Navigator.pushNamed(
-                                      context, AppRoutes.houseModel);
+                                  showDescription = true;
                                 }),
                             houseData: item);
                       }).toList(), // Convierte el iterable en una lista
@@ -57,6 +58,23 @@ class _HouseSelectorPageState extends State<HouseSelectorPage> {
               ],
             ),
           ),
+          showDescription == true
+              ? houseDescription(context, houseData: housesData[0])
+              : const SizedBox(),
+          showDescription == true
+              ? Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(40.0),
+                    child: primaryButtonLarge(
+                      context,
+                      onPressed: () =>
+                          Navigator.pushNamed(context, AppRoutes.houseModel),
+                      title: 'Continue',
+                    ),
+                  ),
+                )
+              : const SizedBox(),
         ],
       ),
     );

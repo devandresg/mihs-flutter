@@ -42,7 +42,8 @@ class _HouseFilterPage extends State<HouseFilterPage> {
                 SizedBox(
                   width: screenSize.width,
                   child: Center(
-                    child: primaryTitleLarge(context, text: 'House Filter'),
+                    child:
+                        primaryTitleLarge(context, text: 'Select Your Options'),
                   ),
                 ),
                 Expanded(
