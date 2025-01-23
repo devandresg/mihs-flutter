@@ -40,7 +40,7 @@ dynamic filterQuestions = [
     ]
   },
   {
-    "question": "Do you wanna have the house waterfront?",
+    "question": "Do you prefer a house with a waterfront view?",
     "options": [
       {"value": "yes", "label": "Yes, I do."},
       {"value": "not", "label": "No, I don't."},

@@ -4,6 +4,7 @@ import 'package:mackle_room_designer/presentation/pages/house_description.dart';
 import 'package:mackle_room_designer/presentation/pages/house_filter.dart';
 import 'package:mackle_room_designer/presentation/pages/house_model.dart';
 import 'package:mackle_room_designer/presentation/pages/house_selector.dart';
+import 'package:mackle_room_designer/presentation/pages/intro.dart';
 
 class AppRoutes {
   static const String homePage = '/home_page'; // Ruta para HouseSelector
@@ -13,6 +14,7 @@ class AppRoutes {
   static const String houseFilter = '/house_filter'; // Ruta para HouseSelector
   static const String houseDescription =
       '/house_description'; // Ruta para HouseSelector
+  static const String introPage = '/intro'; // Ruta para HouseSelector
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -68,6 +70,18 @@ class AppRoutes {
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
               const HomePage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // Configurar el fade-in
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      case introPage:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const IntroPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             // Configurar el fade-in
             return FadeTransition(

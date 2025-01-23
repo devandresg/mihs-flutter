@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mackle_room_designer/core/theme/app_theme.dart';
 import 'package:mackle_room_designer/core/utils/app_utils.dart';
 
 Widget houseCard(BuildContext context, {onTap, houseData}) {
@@ -56,7 +57,10 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall
-                              ?.copyWith(fontSize: calculateSize(8, context)),
+                              ?.copyWith(
+                                fontSize: calculateSize(8, context),
+                                color: AppColors.white500,
+                              ),
                         ),
                       ),
                       Expanded(
@@ -69,7 +73,9 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                                   .textTheme
                                   .labelSmall
                                   ?.copyWith(
-                                      fontSize: calculateSize(4, context)),
+                                    fontSize: calculateSize(4, context),
+                                    color: AppColors.white500,
+                                  ),
                             ),
                             Text(
                               '${houseData['baths']} Baths',
@@ -77,7 +83,9 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                                   .textTheme
                                   .labelSmall
                                   ?.copyWith(
-                                      fontSize: calculateSize(4, context)),
+                                    fontSize: calculateSize(4, context),
+                                    color: AppColors.white500,
+                                  ),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,8 +97,9 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                                           .textTheme
                                           .labelSmall
                                           ?.copyWith(
-                                              fontSize:
-                                                  calculateSize(4, context)),
+                                            fontSize: calculateSize(4, context),
+                                            color: AppColors.white500,
+                                          ),
                                     ),
                                   )
                                   .toList(), // Convierte el Iterable a List<Widget>
@@ -106,10 +115,11 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
                         ),
                         child: Text(
                           '${houseData['year']} Price - ${houseData['price']}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
-                              ?.copyWith(fontSize: calculateSize(6, context)),
+                          style:
+                              Theme.of(context).textTheme.labelMedium?.copyWith(
+                                    fontSize: calculateSize(6, context),
+                                    color: AppColors.white500,
+                                  ),
                         ),
                       ),
                     ],
@@ -129,10 +139,10 @@ Widget houseCard(BuildContext context, {onTap, houseData}) {
             child: Center(
               child: Text(
                 houseData['message'],
-                style: Theme.of(context)
-                    .textTheme
-                    .labelSmall
-                    ?.copyWith(fontSize: calculateSize(4, context)),
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      fontSize: calculateSize(4, context),
+                      color: AppColors.black500,
+                    ),
               ),
             ),
           ),
