@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mackle_room_designer/presentation/pages/home_page.dart';
+//import 'package:mackle_room_designer/presentation/pages/home_page.dart';
 import 'package:mackle_room_designer/presentation/pages/house_description.dart';
 import 'package:mackle_room_designer/presentation/pages/house_filter.dart';
 import 'package:mackle_room_designer/presentation/pages/house_model.dart';
 import 'package:mackle_room_designer/presentation/pages/house_selector.dart';
 import 'package:mackle_room_designer/presentation/pages/intro.dart';
+import 'package:mackle_room_designer/presentation/pages/unity_flow.dart';
 
 class AppRoutes {
   static const String homePage = '/home_page'; // Ruta para HouseSelector
@@ -69,7 +70,8 @@ class AppRoutes {
       case homePage:
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
-              const HomePage(),
+              //const HomePage(),
+              const UnityFlowPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             // Configurar el fade-in
             return FadeTransition(

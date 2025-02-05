@@ -21,7 +21,7 @@ class _HouseModelPage extends State<HouseModelPage> {
     ui.platformViewRegistry.registerViewFactory(
       'unity-webgl',
       (int viewId) => html.IFrameElement()
-        ..src = 'assets/unity_webgl/index.html' // Ruta al archivo Unity WebGL
+        ..src = 'assets/test/index.html' // Ruta al archivo Unity WebGL
         ..style.border = 'none', // Sin bordes
     );
   }
